@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 
-
 function RegisterPage(props) {
   const [firstName, setFirstName] = useState ("");
   const [lastName, setLastName] = useState ("");
@@ -44,8 +43,8 @@ function RegisterPage(props) {
   
 
   return (
-    <div style={{backgroundColor:"lightblue",display:"inline-block", boxSizing:"content-box",borderRadius:"25px", border: "solid grey 2px",paddingBottom:"15px",width:"500px"}}>
-      <h2 style={{color:"darkblue"}}>Registration Form</h2>
+    <div style={{backgroundColor:"lightblue",display:"inline-block", boxSizing:"content-box",borderRadius:"25px", border: "solid #004c4c 2px",paddingBottom:"15px",width:"500px"}}>
+      <h2 style={{color:"#005B5B"}}>Registration Form</h2>
         <div>
           <input
             type="text"
@@ -78,13 +77,13 @@ function RegisterPage(props) {
           />
         </div>
         <div>
-          <input
-            type="text"
-            placeholder="Joining Date"
-            value={joinDate}
-            onChange={(e) => {setJoinDate(e.target.value)}}
-            required
-            style={{width: "83%", padding:"12px 20px", margin:"8px 0",borderRadius:"15px", display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
+        <input
+          type="text"
+          value={joinDate}
+          onChange={(e) => setJoinDate(e.target.value)}
+          placeholder="Joining Date"
+          required
+          style={{width: '83%',padding: '12px 20px',margin: '8px 0',borderRadius: '15px',display: 'inline-block',border: '1px solid #ccc',boxSizing: 'border-box'}}
           />
         </div>
         <div>
@@ -117,8 +116,7 @@ function RegisterPage(props) {
             required
             style={{width: "83%", padding:"12px 20px", margin:"8px 0",borderRadius:"15px", display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
           />
-        </div>import "react-datepicker/dist/react-datepicker.css";
-
+        </div>
         <div>
         <input
             type="text"
@@ -183,14 +181,14 @@ function RegisterPage(props) {
           <button 
           type="submit"
           onClick={()=>{registerFunction()}}
-          style={{backgroundColor:"green", color:"white", padding:"14px 20px", margin:"8px 0",borderRadius:"15px", border:"none", cursor: "pointer", width:"83%"}}
+          style={{backgroundColor:"#005B5B", color:"white", padding:"14px 20px", margin:"8px 0",borderRadius:"15px", border:"none", cursor: "pointer", width:"83%"}}
           >Submit
           </button>
         </div>
         <div>
           <button 
           onClick={()=>{props.setIsLogged("login")}}
-          style={{backgroundColor:"green", color:"white", padding:"14px 20px", margin:"8px 0",borderRadius:"15px", border:"none", cursor: "pointer", width:"83%"}}
+          style={{backgroundColor:"#005B5B", color:"white", padding:"14px 20px", margin:"8px 0",borderRadius:"15px", border:"none", cursor: "pointer", width:"83%"}}
           >Go to Login
           </button>
         </div>
