@@ -4,12 +4,12 @@ import { useState } from "react";
 
 const PayPalLoginPage = (props) => {
 
-  let userName = "luffy@gmail.com";
-  let access = "12345"
+  let userName = "luffy";
+  let access = "meat"
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log()
+  const [enableError, setEnableError] = useState(false)
 
   const emailChange = (e) => {
     setEmail(e.target.value);
@@ -23,12 +23,12 @@ const PayPalLoginPage = (props) => {
     if(userName === email && access === password){
       props.setIsLogged("home")
     }else{
-      alert("Username and Password are Incorrect");
+      setEnableError(true)
     } 
   }
 
   return (
-    <div style={{backgroundColor:"white",display:"inline-block", boxSizing:"content-box",borderRadius:"25px", border: "solid grey 2px",paddingBottom:"15px",width:"500px"}}>
+    <div style={{backgroundColor:"lightblue",display:"inline-block", boxSizing:"content-box",borderRadius:"25px", border: "solid #0070BA 2px",paddingBottom:"15px",width:"500px"}}>
 
        <div>
         <img src={paypal} alt="logo" style={{width:"20%", maxHeight:"10%"}} />
@@ -43,6 +43,7 @@ const PayPalLoginPage = (props) => {
        </div> 
         
        <div>
+       {enableError === true && <div style={{ fontSize: "12px", color: "red" }} >Username and password are not valid</div>}
         <button type="submit" onClick={buttonChange}  style={{backgroundColor:"#0070BA", color:"white", padding:"14px 20px", margin:"8px 0",borderRadius:"10px", border:"none", cursor: "pointer", width:"60%"}}>Login</button>
        </div> 
 

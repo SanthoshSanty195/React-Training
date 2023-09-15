@@ -14,15 +14,16 @@ function App(){
 
   return (
     <>
-    <div style={{backgroundColor:"#0070BA"}}>
+    <div>
+    {/* style={{backgroundColor:"#0070BA"}} */}
     <div style={{textAlign:"center",paddingTop:"50px"}}>
       {isLogged === "login" && <PayPalLoginPage isLogged={isLogged} setIsLogged={setIsLogged} />}
     </div>
-    <div style={{textAlign:"center"}}>
+    <div>
       {isLogged === "home" && <HomePage registeredData={registeredData} setIsLogged={setIsLogged} />}
     </div>
     </div>
-    <div style={{backgroundColor:"#0070BA"}}>
+    <div>
     <div style={{textAlign:"center", paddingBottom:"20px"}}>
     {isLogged === 'register' && <RegisterPage  registeredData={registeredData} setRegisteredData={setRegisteredData} setIsLogged={setIsLogged} />}
     </div>
