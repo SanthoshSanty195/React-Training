@@ -8,14 +8,12 @@ import HomePage from "./home";
 
 function App(){
 
-  let [isLogged, setIsLogged] = useState("login");
+  const [isLogged, setIsLogged] = useState("login");
   const [registeredData, setRegisteredData] = useState ([]);
-
 
   return (
     <>
     <div>
-    {/* style={{backgroundColor:"#0070BA"}} */}
     <div style={{textAlign:"center",paddingTop:"50px"}}>
       {isLogged === "login" && <PayPalLoginPage isLogged={isLogged} setIsLogged={setIsLogged} />}
     </div>

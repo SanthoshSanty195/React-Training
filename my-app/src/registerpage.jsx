@@ -5,15 +5,10 @@ function RegisterPage(props) {
   const [firstName, setFirstName] = useState ("");
   const [lastName, setLastName] = useState ("");
   const [fatherName, setFatherName] = useState ("");
-  const [joinDate, setJoinDate] = useState ("");
-  const [roomNum, setRoomNum] = useState ("");
-  const [occupation, setOccupation] = useState ("");
   const [aadhar, setAadhar] = useState ("");
-  const [streetName, setStreetName] = useState ("");
   const [cityName, setCityName] = useState ("");
   const [district, setDistrict] = useState ("");
   const [pincode, setPincode] = useState ("");
-  const [advAmount, setAdvAmount] = useState ("");
   const [phoneNum, setPhoneNum] = useState ("");
 
 
@@ -24,15 +19,10 @@ function RegisterPage(props) {
         firstName: firstName,
         lastName: lastName,
         fatherName: fatherName,
-        joinDate: joinDate,
-        roomNum: roomNum,
-        occupation: occupation,
         aadhar: aadhar,
-        streetName: streetName,
         cityName: cityName,
         district: district,
         pincode: pincode,
-        advAmount: advAmount,
         phoneNum: phoneNum
     }
 
@@ -53,7 +43,7 @@ function RegisterPage(props) {
             value={firstName}
             onChange={(e) => {setFirstName(e.target.value)}}
             required
-            style={{width: "40%", padding:"12px 20px", margin:"8px ",borderRadius:"15px", display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
+            style={{width: "40%", padding:"12px 20px", margin:"8px ",borderRadius:"15px", display: "inline-block", border: "1px solid #004c4c", boxSizing:"border-box"}}
           />
           <input
             type="text"
@@ -62,7 +52,7 @@ function RegisterPage(props) {
             value={lastName}
             onChange={(e) => {setLastName(e.target.value)}}
             required
-            style={{width: "40%", padding:"12px 20px", margin:"8px ",borderRadius:"15px",display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
+            style={{width: "40%", padding:"12px 20px", margin:"8px ",borderRadius:"15px",display: "inline-block", border: "1px solid #004c4c", boxSizing:"border-box"}}
           />
         </div>
         <div>
@@ -73,38 +63,7 @@ function RegisterPage(props) {
             value={fatherName}
             onChange={(e) => {setFatherName(e.target.value)}}
             required
-            style={{width: "83%", padding:"12px 20px", margin:"8px 0",borderRadius:"15px", display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
-          />
-        </div>
-        <div>
-        <input
-          type="text"
-          value={joinDate}
-          onChange={(e) => setJoinDate(e.target.value)}
-          placeholder="Joining Date"
-          required
-          style={{width: '83%',padding: '12px 20px',margin: '8px 0',borderRadius: '15px',display: 'inline-block',border: '1px solid #ccc',boxSizing: 'border-box'}}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Room Number"
-            value={roomNum}
-            onChange={(e) => {setRoomNum(e.target.value)}}
-            required
-            style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            name="Occupation"
-            placeholder="Occupation"
-            value={occupation}
-            onChange={(e) => {setOccupation(e.target.value)}}
-            required
-            style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
+            style={{width: "83%", padding:"12px 20px", margin:"8px 0",borderRadius:"15px", display: "inline-block", border: "1px solid #004c4c", boxSizing:"border-box"}}
           />
         </div>
         <div>
@@ -114,17 +73,7 @@ function RegisterPage(props) {
             value={aadhar}
             onChange={(e) => {setAadhar(e.target.value)}}
             required
-            style={{width: "83%", padding:"12px 20px", margin:"8px 0",borderRadius:"15px", display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
-          />
-        </div>
-        <div>
-        <input
-            type="text"
-            placeholder="Your Street Name"
-            value={streetName}
-            onChange={(e) => {setStreetName(e.target.value)}}
-            required
-            style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
+            style={{width: "83%", padding:"12px 20px", margin:"8px 0",borderRadius:"15px", display: "inline-block", border: "1px solid #004c4c", boxSizing:"border-box"}}
           />
         </div>
         <div>
@@ -134,7 +83,7 @@ function RegisterPage(props) {
             value={cityName}
             onChange={(e) => {setCityName(e.target.value)}}
             required
-            style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
+            style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #004c4c", boxSizing:"border-box"}}
           />
         </div>
         <div>
@@ -144,7 +93,7 @@ function RegisterPage(props) {
             value={district}
             onChange={(e) => {setDistrict(e.target.value)}}
             required
-            style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
+            style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #004c4c", boxSizing:"border-box"}}
           />
         </div>
         <div>
@@ -154,17 +103,7 @@ function RegisterPage(props) {
             value={pincode}
             onChange={(e) => {setPincode(e.target.value)}}
             required
-            style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Advance Amount"
-            value={advAmount}
-            onChange={(e) => {setAdvAmount(e.target.value)}}
-            required
-            style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
+            style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #004c4c", boxSizing:"border-box"}}
           />
         </div>
         <div>
@@ -174,7 +113,7 @@ function RegisterPage(props) {
             value={phoneNum}
             onChange={(e) => {setPhoneNum(e.target.value)}}
             required
-            style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #ccc", boxSizing:"border-box"}}
+            style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #004c4c", boxSizing:"border-box"}}
           />
         </div>
         <div>

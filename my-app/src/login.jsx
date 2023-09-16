@@ -5,11 +5,11 @@ import { useState } from "react";
 const PayPalLoginPage = (props) => {
 
   let userName = "luffy";
-  let access = "meat"
+  let access = "meat";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [enableError, setEnableError] = useState(false)
+  const [enableError, setEnableError] = useState(false);
 
   const emailChange = (e) => {
     setEmail(e.target.value);
@@ -35,11 +35,11 @@ const PayPalLoginPage = (props) => {
        </div>
         
        <div>
-        <input type="email" value={email} onChange={emailChange} placeholder="Enter your email" required style={{width: "60%", padding:"12px 20px", margin:"8px 0", display: "inline-block",borderRadius:"10px", border: "1px solid #ccc", boxSizing:"border-box"}} />
+        <input type="email" value={email} onChange={emailChange} placeholder="Enter your email" required style={{width: "60%", padding:"12px 20px", margin:"8px 0", display: "inline-block",borderRadius:"10px", border: "1px solid #0070BA", boxSizing:"border-box"}} />
        </div> 
         
        <div>
-        <input type="password" value={password} onChange={passwordChange} placeholder="Enter your password" required style={{width: "60%", padding:"12px 20px", margin:"8px 0", display: "inline-block",borderRadius:"10px", border: "1px solid #ccc", boxSizing:"border-box"}} />
+        <input type="password" value={password} onChange={passwordChange} placeholder="Enter your password" required style={{width: "60%", padding:"12px 20px", margin:"8px 0", display: "inline-block",borderRadius:"10px", border: "1px solid #0070BA", boxSizing:"border-box"}} />
        </div> 
         
        <div>
