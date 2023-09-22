@@ -4,8 +4,8 @@ import { useState } from "react";
 
 const PayPalLoginPage = (props) => {
 
-  let userName = "luffy";
-  let access = "meat";
+  let userName = "";
+  let access = "";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
