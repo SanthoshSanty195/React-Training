@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {Button} from 'antd';
+import {Button,Input, Modal} from 'antd';
 
 function HomePage(props) {
 
@@ -14,9 +14,12 @@ function HomePage(props) {
 
   const [selectedIndex, setSelectedIndex] = useState(null);
 
-  console.log(props.registeredData);
+  const [isOpen, setIsOpen] = useState(false);
+
 
   const onEdit = (indexNum) => {
+
+    setIsOpen(true);
 
     const selectedObj = props.registeredData[indexNum]
     setEditFirstName(selectedObj.firstName)
@@ -53,9 +56,21 @@ const update = () => {
     }
 
     props.setRegisteredData(output)
+    setIsOpen(false);
 }
 
-console.log(props.registeredData)
+
+const onDelete = (indexNum) => {
+  let output = [];
+
+  for (let i in props.registeredData){
+    if (i != indexNum){
+      output.push(props.registeredData[i])
+    }
+  }
+  props.setRegisteredData(output)
+}
+
 
   return (
     <>
@@ -64,24 +79,47 @@ console.log(props.registeredData)
 
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
           {props.registeredData.map((item, num) => (
-            <div key={num} style={{ border: "solid #004c4c 2px", borderRadius: "15px", width: "250px", textAlign: "left",paddingLeft:"4px", backgroundColor: "#005B5B", color: "lightblue", margin: "10px" }}>
-            <div style={{ fontFamily: "system-ui" }}>
-              <div>First Name    : {item.firstName}</div>
-              <div>Last Name     : {item.lastName}</div>
-              <div>Father Name   : {item.fatherName}</div>
-              <div>Aadhar        : {item.aadhar}</div>
-              <div>City          : {item.cityName}</div>
-              <div>District      : {item.district}</div>
-              <div>Pincode       : {item.pincode}</div>
-              <div>Mobile Number : {item.phoneNum}</div>
+          <div 
+          key={num} 
+          style={{ border: "solid #004c4c 2px", borderRadius: "15px", width: "300px", textAlign: "left", padding: "20px", backgroundColor: "#1db597", color: "#333", margin: "20px", boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center" }}>
+            <div style={{ marginBottom: "10px" }}>
+              <img 
+              alt='Profile Pic'
+              src='https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png'
+              style={{ maxWidth: "100%", maxHeight: "150px", paddingLeft:"10px"}}
+              />
+              <div><strong>First Name:</strong> {item.firstName}</div>
+              <div><strong>Last Name:</strong> {item.lastName}</div>
+              <div><strong>Father Name:</strong> {item.fatherName}</div>
+              <div><strong>Aadhar:</strong> {item.aadhar}</div>
+              <div><strong>City:</strong> {item.cityName}</div>
+              <div><strong>District:</strong> {item.district}</div>
+              <div><strong>Pincode:</strong> {item.pincode}</div>
+              <div><strong>Mobile Number:</strong> {item.phoneNum}</div>
             </div>
-            <div>
-                <Button onClick={() => onEdit(num)} >Edit</Button>
-                <Button>Delete</Button>
+            <div style={{ textAlign: "center" }}>
+              <Button onClick={() => onEdit(num)} style={{ marginRight: "10px", borderRadius: "15px", border: "solid #004c4c 2px",  }}>Edit</Button>
+              <Button onClick={() => onDelete(num)} style={{ borderRadius: "15px", border: "solid #004c4c 2px",backgroundColor:"red",color:"white" }}>Delete</Button>
             </div>
-          </div> 
+          </div>
           ))}
         </div>
+        <Modal
+        open={isOpen}
+        title="Edit The Data"
+        onOk={update}
+        onCancel={()=>{setIsOpen(false)}}>
+          <div>
+            <Input value={editFirstName} placeholder='First Name' onChange={(e) => setEditFirstName(e.target.value)} style={{width:"50%", margin:"3px"}} />
+            <Input value={editLastName} placeholder='Last Name' onChange={(e) => setEditLastName(e.target.value)} style={{width:"50%", margin:"3px"}} />
+            <Input value={editFatherName} placeholder='Father Name' onChange={(e) => setEditFatherName(e.target.value)} style={{width:"50%", margin:"3px"}} />
+            <Input value={editAadhar} placeholder='Aadhar' onChange={(e) => setEditAadhar(e.target.value)} style={{width:"50%", margin:"3px"}} />
+            <Input value={editCityName} placeholder='Your City' onChange={(e) => setEditCityName(e.target.value)} style={{width:"50%", margin:"3px"}} />
+            <Input value={editDistrict} placeholder='Your District' onChange={(e) => setEditDistrict(e.target.value)} style={{width:"50%", margin:"3px"}} />
+            <Input value={editPincode} placeholder='Your Pincode' onChange={(e) => setEditPincode(e.target.value)} style={{width:"50%", margin:"3px"}} />
+            <Input value={editPhone} placeholder='Mobile Number' onChange={(e) => setEditPhone(e.target.value)} style={{width:"50%", margin:"3px"}} />
+          </div>
+        </Modal>
 
         <div style={{ textAlign: "center" }}>
           <button
@@ -94,24 +132,10 @@ console.log(props.registeredData)
           </button>
         </div>
       </div>
-      
-           
-
-            <div>
-              <div>Updating Data</div>
-                <div style={{margin:"20px 0px", width:"50%",display:"flex", flexDirection:"column"}} >
-                    <input value={editFirstName} onChange={(e) => setEditFirstName(e.target.value)} ></input>
-                    <input value={editLastName} onChange={(e) => setEditLastName(e.target.value)} ></input>
-                    <input value={editFatherName} onChange={(e) => setEditFatherName(e.target.value)} ></input>
-                    <input value={editAadhar} onChange={(e) => setEditAadhar(e.target.value)} ></input>
-                    <input value={editCityName} onChange={(e) => setEditCityName(e.target.value)} ></input>
-                    <input value={editDistrict} onChange={(e) => setEditDistrict(e.target.value)} ></input>
-                    <input value={editPincode} onChange={(e) => setEditPincode(e.target.value)} ></input>
-                    <input value={editPhone} onChange={(e) => setEditPhone(e.target.value)} ></input>
-                </div>
-                <button onClick={() => update()} >Update</button>
-            </div>
             
+
+
+              
             
     </>
   );

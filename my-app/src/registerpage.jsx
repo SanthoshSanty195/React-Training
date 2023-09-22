@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { Input, message } from 'antd';
 
 function RegisterPage(props) {
   const [firstName, setFirstName] = useState ("");
@@ -10,6 +10,8 @@ function RegisterPage(props) {
   const [district, setDistrict] = useState ("");
   const [pincode, setPincode] = useState ("");
   const [phoneNum, setPhoneNum] = useState ("");
+  const [image, setImage] = useState(null);
+
 
 
   const registerFunction = () => {
@@ -23,20 +25,29 @@ function RegisterPage(props) {
         cityName: cityName,
         district: district,
         pincode: pincode,
-        phoneNum: phoneNum
+        phoneNum: phoneNum,
+        image: image
     }
 
 
     props.setRegisteredData([...props.registeredData, obj])
+    message.success('Registered successfully');
 }
+
+const handleImageChange = (e) => {
+  const selectedImage = e.target.files[0];
+  setImage(selectedImage);
+};
 
   
 
   return (
     <div style={{backgroundColor:"lightblue",display:"inline-block", boxSizing:"content-box",borderRadius:"25px", border: "solid #004c4c 2px",paddingBottom:"15px",width:"500px"}}>
       <h2 style={{color:"#005B5B"}}>Registration Form</h2>
+
+        
         <div>
-          <input
+          <Input
             type="text"
             name="firstName"
             placeholder="First Name"
@@ -45,7 +56,7 @@ function RegisterPage(props) {
             required
             style={{width: "40%", padding:"12px 20px", margin:"8px ",borderRadius:"15px", display: "inline-block", border: "1px solid #004c4c", boxSizing:"border-box"}}
           />
-          <input
+          <Input
             type="text"
             name="lastName"
             placeholder="Last Name"
@@ -56,7 +67,7 @@ function RegisterPage(props) {
           />
         </div>
         <div>
-          <input
+          <Input
             type="text"
             name="fname"
             placeholder="Father Name"
@@ -67,7 +78,7 @@ function RegisterPage(props) {
           />
         </div>
         <div>
-          <input
+          <Input
             type="text"
             placeholder="Aadhar Number"
             value={aadhar}
@@ -77,7 +88,7 @@ function RegisterPage(props) {
           />
         </div>
         <div>
-        <input
+        <Input
             type="text"
             placeholder="Your City"
             value={cityName}
@@ -87,7 +98,7 @@ function RegisterPage(props) {
           />
         </div>
         <div>
-        <input
+        <Input
             type="text"
             placeholder="Your District"
             value={district}
@@ -97,7 +108,7 @@ function RegisterPage(props) {
           />
         </div>
         <div>
-        <input
+        <Input
             type="text"
             placeholder="Your Pincode"
             value={pincode}
@@ -107,13 +118,23 @@ function RegisterPage(props) {
           />
         </div>
         <div>
-          <input
+          <Input
             type="tel"
             placeholder="Mobile Number"
             value={phoneNum}
             onChange={(e) => {setPhoneNum(e.target.value)}}
             required
             style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #004c4c", boxSizing:"border-box"}}
+          />
+        </div>
+        <div>
+          <label style={{marginRight:"10px", color:"#005B5B"}}><strong>Upload Your Image ---:-</strong></label>
+          <Input
+            type="file"
+            alt="Profile Picture"
+            accept="image/*"
+            onChange={handleImageChange}
+            style={{width: "45%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #004c4c", boxSizing:"border-box"}}
           />
         </div>
         <div>
