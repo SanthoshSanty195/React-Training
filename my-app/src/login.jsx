@@ -1,5 +1,6 @@
 import paypal from './paypal.png';
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 const PayPalLoginPage = (props) => {
@@ -11,6 +12,8 @@ const PayPalLoginPage = (props) => {
   const [password, setPassword] = useState("");
   const [enableError, setEnableError] = useState(false);
 
+  const navigate = useNavigate()
+
   const emailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -21,7 +24,7 @@ const PayPalLoginPage = (props) => {
   
   const buttonChange = ()=>{
     if(userName === email && access === password){
-      props.setIsLogged("home")
+      navigate("/home-page")
     }else{
       setEnableError(true)
     } 
@@ -48,7 +51,7 @@ const PayPalLoginPage = (props) => {
        </div> 
 
        <div>
-        <button onClick={()=>{props.setIsLogged("register")}} style={{backgroundColor:"#0070BA", color:"white", padding:"14px 20px", margin:"8px 0",borderRadius:"10px", border:"none", cursor: "pointer", width:"60%"}}>Register Here</button>
+        <button onClick={()=>{navigate("/register-page")}} style={{backgroundColor:"#0070BA", color:"white", padding:"14px 20px", margin:"8px 0",borderRadius:"10px", border:"none", cursor: "pointer", width:"60%"}}>Register Here</button>
        </div>
         
     </div>
