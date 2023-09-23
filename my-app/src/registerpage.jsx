@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Input, message } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPage(props) {
   const [firstName, setFirstName] = useState ("");
@@ -10,7 +11,9 @@ function RegisterPage(props) {
   const [district, setDistrict] = useState ("");
   const [pincode, setPincode] = useState ("");
   const [phoneNum, setPhoneNum] = useState ("");
-  const [image, setImage] = useState(null);
+  // const [image, setImage] = useState(null);
+
+  const navigate = useNavigate()
 
 
 
@@ -26,7 +29,7 @@ function RegisterPage(props) {
         district: district,
         pincode: pincode,
         phoneNum: phoneNum,
-        image: image
+        // image: image
     }
 
 
@@ -34,10 +37,10 @@ function RegisterPage(props) {
     message.success('Registered successfully');
 }
 
-const handleImageChange = (e) => {
-  const selectedImage = e.target.files[0];
-  setImage(selectedImage);
-};
+// const handleImageChange = (e) => {
+//   const selectedImage = e.target.files[0];
+//   setImage(selectedImage);
+// };
 
   
 
@@ -127,7 +130,7 @@ const handleImageChange = (e) => {
             style={{width: "83%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #004c4c", boxSizing:"border-box"}}
           />
         </div>
-        <div>
+        {/* <div>
           <label style={{marginRight:"10px", color:"#005B5B"}}><strong>Upload Your Image ---:-</strong></label>
           <Input
             type="file"
@@ -136,7 +139,7 @@ const handleImageChange = (e) => {
             onChange={handleImageChange}
             style={{width: "45%", padding:"12px 20px", margin:"8px 0", borderRadius:"15px",display: "inline-block", border: "1px solid #004c4c", boxSizing:"border-box"}}
           />
-        </div>
+        </div> */}
         <div>
           <button 
           type="submit"
@@ -147,7 +150,7 @@ const handleImageChange = (e) => {
         </div>
         <div>
           <button 
-          onClick={()=>{props.setIsLogged("login")}}
+          onClick={()=>{navigate("/")}}
           style={{backgroundColor:"#005B5B", color:"white", padding:"14px 20px", margin:"8px 0",borderRadius:"15px", border:"none", cursor: "pointer", width:"83%"}}
           >Go to Login
           </button>
