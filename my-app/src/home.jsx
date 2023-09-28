@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import {Button,Input, Modal} from 'antd';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function HomePage(props) {
 
@@ -74,6 +75,19 @@ const onDelete = (indexNum) => {
 }
 
 
+useEffect(() => {
+  // console.log(props.registeredData)
+
+  if(search !== ''){
+  axios.get(`https://jsonplaceholder.typicode.com/posts/${search}`).then((response) => {
+    console.log(response.data)
+    props.setRegisteredData([response.data])
+  }).catch((err) => {
+    console.log({err})
+  })
+}
+}, [search, props])
+
 
   return (
     <>
@@ -82,7 +96,7 @@ const onDelete = (indexNum) => {
 
         <div>
           <Input 
-          placeholder='Search'
+          placeholder='Search ID'
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           style={{width:"250px", border: "solid #004c4c 1px"}}
@@ -92,7 +106,6 @@ const onDelete = (indexNum) => {
 
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
           {props.registeredData
-          .filter((item) => search === "" || search === item.firstName)
           .map((item, num) => {
             console.log(item)
             return(
@@ -103,14 +116,15 @@ const onDelete = (indexNum) => {
                   src='https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png'
                   style={{ maxWidth: "100%", maxHeight: "150px", paddingLeft:"10px"}}
                   />
-                  <div><strong>First Name:</strong> {item.firstName}</div>
-                  <div><strong>Last Name:</strong> {item.lastName}</div>
-                  <div><strong>Father Name:</strong> {item.fatherName}</div>
-                  <div><strong>Aadhar:</strong> {item.aadhar}</div>
-                  <div><strong>City:</strong> {item.cityName}</div>
+                  <div><strong>Id:</strong> {item.id}</div>
+                  <div><strong>User ID:</strong> {item.userId}</div>
+                  <div><strong>Title:</strong> {item.title}</div>
+                  <div><strong>Body:</strong> {item.body}</div>
+
+                  {/* <div><strong>City:</strong> {item.cityName}</div>
                   <div><strong>District:</strong> {item.district}</div>
                   <div><strong>Pincode:</strong> {item.pincode}</div>
-                  <div><strong>Mobile Number:</strong> {item.phoneNum}</div>
+                  <div><strong>Mobile Number:</strong> {item.phoneNum}</div> */}
                 </div>
                 <div style={{ textAlign: "center" }}>
                   <Button onClick={() => onEdit(num)} style={{ marginRight: "10px", borderRadius: "15px", border: "solid #004c4c 2px",  }}>Edit</Button>
