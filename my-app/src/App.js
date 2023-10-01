@@ -6,16 +6,22 @@ import RegisterPage from './registerpage';
 import HomePage from "./home";
 import {Routes,Route} from "react-router-dom"
 import axios from 'axios';
+import { useDispatch } from "react-redux";
+import { setApiData } from "./StateManager/action/methods";
+
+
 
 
 function App(){
 
   const [registeredData, setRegisteredData] = useState ([]);
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/posts").then((response) => {
+    axios.get("https://fakestoreapi.com/products").then((response) => {
       console.log(response.data)
-      setRegisteredData(response.data)
+      dispatch(setApiData(response.data))
     }).catch((err) => {
       console.log({err})
     })
