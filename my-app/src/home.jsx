@@ -1,7 +1,9 @@
 import { useState,useEffect } from 'react';
 import {Button,Input, Modal} from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Rate } from 'antd';
+import cart from './cart.png'
 
 function HomePage(props) {
 
@@ -19,67 +21,64 @@ function HomePage(props) {
 
   const navigate = useNavigate()
 
+  const [cartItems, setCartItems] = useState([]); 
 
-  const onEdit = (indexNum) => {
-
-    setIsOpen(true);
-
-    const selectedObj = props.registeredData[indexNum]
-    setEditFirstName(selectedObj.firstName)
-    setEditLastName(selectedObj.lastName)
-    setEditFatherName(selectedObj.fatherName)
-    setEditAadhar(selectedObj.aadhar)
-    setEditCityName(selectedObj.cityName)
-    setEditDistrict(selectedObj.district)
-    setEditPincode(selectedObj.pincode)
-    setEditPhone(selectedObj.phoneNum)
-    setSelectedIndex(indexNum)
-}
-
-const update = () => {
-    let obj = {
-        firstName: editFirstName,
-        lastName: editLastName,
-        fatherName: editFatherName,
-        aadhar: editAadhar,
-        cityName: editCityName,
-        district: editDistrict,
-        pincode: editPincode,
-        phoneNum: editPhone
-    }
-
-    let output = []
-
-    for (let i in props.registeredData) {
-        if (i != selectedIndex) {
-            output.push(props.registeredData[i])
-        } else {
-            output.push(obj)
-        }
-    }
-
-    props.setRegisteredData(output)
-    setIsOpen(false);
-}
+  const addToCart = (item) => {
+    setCartItems([...cartItems, item]);
+  };
 
 
-const onDelete = (indexNum) => {
-  let output = [];
+//   const onEdit = (indexNum) => {
 
-  for (let i in props.registeredData){
-    if (i != indexNum){
-      output.push(props.registeredData[i])
-    }
-  }
-  props.setRegisteredData(output)
-}
+//     setIsOpen(true);
+
+//     const selectedObj = props.registeredData[indexNum]
+//     setEditFirstName(selectedObj.firstName)
+//     setEditLastName(selectedObj.lastName)
+//     setEditFatherName(selectedObj.fatherName)
+//     setEditAadhar(selectedObj.aadhar)
+//     setEditCityName(selectedObj.cityName)
+//     setEditDistrict(selectedObj.district)
+//     setEditPincode(selectedObj.pincode)
+//     setEditPhone(selectedObj.phoneNum)
+//     setSelectedIndex(indexNum)
+// }
+
+// const update = () => {
+//     let obj = {
+//         firstName: editFirstName,
+//         lastName: editLastName,
+//         fatherName: editFatherName,
+//         aadhar: editAadhar,
+//         cityName: editCityName,
+//         district: editDistrict,
+//         pincode: editPincode,
+//         phoneNum: editPhone
+//     }
+
+//     let output = []
+
+//     for (let i in props.registeredData) {
+//         if (i != selectedIndex) {
+//             output.push(props.registeredData[i])
+//         } else {
+//             output.push(obj)
+//         }
+//     }
+
+//     props.setRegisteredData(output)
+//     setIsOpen(false);
+// }
+
+
+
 
 
 useEffect(() => {
-  // console.log(props.registeredData)
+  console.log(props.registeredData)
 
   if(search !== ''){
-  axios.get(`https://jsonplaceholder.typicode.com/posts/${search}`).then((response) => {
+  axios.get(`https://fakestoreapi.com/products/${search}`).then((response) => {
     console.log(response.data)
     props.setRegisteredData([response.data])
   }).catch((err) => {
@@ -91,6 +90,10 @@ useEffect(() => {
 
   return (
     <>
+
+      <Route path='/cart' element={<img src={cart} onClick={() => {navigate("/cart", { cartItems })}} />} />
+
+
       <div style={{ backgroundColor: "lightblue", border:"solid #004c4c 2px",marginLeft:"50px", marginRight:"50px",borderRadius:"25px"}}>
         <h2 style={{ textAlign: "center", color: "#005B5B" }}>HomePage</h2>
 
@@ -112,14 +115,15 @@ useEffect(() => {
               <div key={num} style={{ border: "solid #004c4c 2px", borderRadius: "15px", width: "300px", textAlign: "left", padding: "20px", backgroundColor: "#1db597", color: "#333", margin: "20px", boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center" }}>
                 <div style={{ marginBottom: "10px" }}>
                   <img 
-                  alt='Profile Pic'
-                  src='https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png'
+                  alt='itemPic'
+                  src={item.image}
                   style={{ maxWidth: "100%", maxHeight: "150px", paddingLeft:"10px"}}
                   />
                   <div><strong>Id:</strong> {item.id}</div>
-                  <div><strong>User ID:</strong> {item.userId}</div>
-                  <div><strong>Title:</strong> {item.title}</div>
-                  <div><strong>Body:</strong> {item.body}</div>
+                  <div><strong>User ID:</strong> {item.category}</div>
+                  <div><strong>Title:</strong> {item.description}</div>
+                  <div><strong>Body:</strong> {item.price}</div>
+                  <Rate allowHalf defaultValue={item.rating.Rate} />
 
                   {/* <div><strong>City:</strong> {item.cityName}</div>
                   <div><strong>District:</strong> {item.district}</div>
@@ -127,14 +131,14 @@ useEffect(() => {
                   <div><strong>Mobile Number:</strong> {item.phoneNum}</div> */}
                 </div>
                 <div style={{ textAlign: "center" }}>
-                  <Button onClick={() => onEdit(num)} style={{ marginRight: "10px", borderRadius: "15px", border: "solid #004c4c 2px",  }}>Edit</Button>
-                  <Button onClick={() => onDelete(num)} style={{ borderRadius: "15px", border: "solid #004c4c 2px",backgroundColor:"red",color:"white" }}>Delete</Button>
+                  <Button onClick={() => addToCart(num) } style={{ marginRight: "10px", borderRadius: "15px", border: "solid #004c4c 2px",  }}>Add to Cart</Button>
+                  
                 </div>
              </div>
               )
           })}
         </div>
-        <Modal
+        {/* <Modal
         open={isOpen}
         title="Edit The Data"
         onOk={update}
@@ -149,7 +153,10 @@ useEffect(() => {
             <Input value={editPincode} placeholder='Your Pincode' onChange={(e) => setEditPincode(e.target.value)} style={{width:"50%", margin:"3px"}} />
             <Input value={editPhone} placeholder='Mobile Number' onChange={(e) => setEditPhone(e.target.value)} style={{width:"50%", margin:"3px"}} />
           </div>
-        </Modal>
+        </Modal> */}
+
+
+        <Route path='/cart' element={<img src={cart} />} />
 
         <div style={{ textAlign: "center" }}>
           <button

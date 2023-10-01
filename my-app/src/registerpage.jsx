@@ -1,8 +1,28 @@
 import { useState } from 'react';
 import { Input, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux/es/hooks/useSelector"
+
+
+
+
+
+   
+
+
 
 function RegisterPage(props) {
+
+  const data = useSelector((state) => state.apiData.localRegisteredData)
+    console.log('data', data)
+  
+  
+  // console.log("regData",data)
+
+  
+
+
+
   const [firstName, setFirstName] = useState ("");
   const [lastName, setLastName] = useState ("");
   const [fatherName, setFatherName] = useState ("");
@@ -15,7 +35,7 @@ function RegisterPage(props) {
 
   const navigate = useNavigate()
 
-
+  
 
   const registerFunction = () => {
 
